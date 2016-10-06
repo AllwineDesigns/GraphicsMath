@@ -43,7 +43,7 @@ var VectorMatrixMathDemo = {
                 });
             }
             MathJax.Hub.Queue(["Typeset", MathJax.Hub ]);
-            this.render();
+//            this.render();
         }.bind(this));
 
         this.projectVector1 = new THREE.Vector3(0,0,0);
@@ -66,7 +66,7 @@ var VectorMatrixMathDemo = {
             var containerHeight = this.html.container.height();
             var canvasHeight = $(opts.scrollWidget).height();
             var scrollY = $(window).scrollTop();
-            if($(window).width() > 1000) {
+            if($(window).width() > 900) {
                 if(scrollY+50 >= containerPos.top) {
                     if(scrollY+50+canvasHeight < containerPos.top+containerHeight) {
                         canvasPos.top = scrollY+50;
@@ -140,7 +140,7 @@ var VectorMatrixMathDemo = {
                           scale: 150
                 }
             });
-        } else if(width > 992) {
+        } else if(width > 900) {
             this.renderer.setSize( 400, 400);
             MathJax.Hub.Config({
                   "HTML-CSS": {
