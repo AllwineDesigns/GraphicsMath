@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Angle Between Two Vectors</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="container">
+<h1>Introduction to Graphics Math</h1>
+
+<h3>Angle Between Two Vectors</h3>
+
+<div class="row" id="angleBetweenDemo">
+<div class="col-sm-6">
+<canvas width="300" height="300"></canvas>
+</div>
+<div class="col-sm-6">
+<p>
+<strong>A:</strong> (<span class="A"></span>)<br/>
+<strong>B:</strong> (<span class="B"></span>)<br/>
+</p>
+
+<p>
+The dot product of two vectors is also equal to the product of their magnitudes times the cosine of the angle between them:
+\[\textbf{A} \cdot \textbf{B}=\|\textbf{A}\|\|\textbf{B}\| cos(\theta)\]
+
+If we solve for \(\theta\) we get:
+\[\theta=cos^{-1} \left(\frac{\textbf{A} \cdot \textbf{B}}{\|\textbf{A}\|\|\textbf{B}\|}\right)\]
+<span class="eq1">\[=cos^{-1} \left(\frac{1.000}{(1.414)(3.606)}\right)\]</span>
+<span class="eq2">\[=\underline{\underline{66.907^{\circ}}}\]</span>
+</p>
+<p>
+<strong>Things to try:</strong>
+<ul>
+<li>Drag either vector to the origin. Notice how \(\theta\) is undefined because of the divide by zero. When finding the
+angle between two vectors, always check for zero vectors (or know that they will never be zero vectors).</li>
+<li>Start with the vectors on top of each other. Drag one around until they are 180\(^{\circ}\) from each other, 
+then keep going. Notice that the angle then gets smaller. The angle that is calculated is always the smallest 
+angle between them, which is always between 0\(^{\circ}\) and 180\(^{\circ}\).</li>
+</ul>
+</p>
+<p>
+<strong>Note:</strong> If you know the two vectors are unit vectors (that they have a length of 1), you can avoid having to 
+calculate or divide by their magnitudes. You also know that the dot product will range from -1 to 1 so to avoid having to
+do the inverse cosine (an expensive operation compared to the dot product), you can compare directly to the dot product. For example, if you want to
+check whether two unit vectors are less than 60\(^{\circ}\) apart, you can simply check whether the dot product is greater 
+that 0.5 because \(cos^{-1}(0.5)=60^{\circ}\) and \(cos^{-1}(1.0)=0\).
+</p>
+<p>
+<strong>Note:</strong> Be careful implementing this with floating point math.
+At 0\(^{\circ}\) or 180\(^{\circ}\) inverse cosine can occasionally return NaN. 
+Because of floating point math, dividing my the magnitudes sometimes 
+yields values slightly below -1 or slightly above 1, when it really should
+be exactly -1 or 1. Since the domain of inverse cosine is -1 to 1, clamping 
+the input is necessary. Just another thing to be aware of when implementing
+graphics math with floating point values!
+</p>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+    <a href="dot_product.html" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-arrow-left"></span> Previous
+    </a>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown">
+            Jump To <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html">Introduction</a></li>
+            <li><a href="vector_point.html">Points and Directions</a></li>
+            <li><a href="vector_addition.html">Vector Addition</a></li>
+            <li><a href="magnitude.html">Magnitude</a></li>
+            <li><a href="normalization.html">Normalization</a></li>
+            <li><a href="dot_product.html">Dot Product</a></li>
+            <li><a href="angle_between.html">Angle Between Two Vectors</a></li>
+            <li><a href="vector_projection.html">Vector Projection</a></li>
+            <li><a href="matrices.html">Matrices</a></li>
+            <li><a href="scale_matrix.html">Scale Matrix</a></li>
+            <li><a href="rotation_matrix.html">Rotation Matrix</a></li>
+            <li><a href="translation_matrix.html">Translation Matrix</a></li>
+            <li><a href="matrix_multiplication.html">Matrix Multiplication</a></li>
+            <li><a href="cross_product.html">Cross Product</a></li>
+            <li><a href="euler_angles.html">Euler Angles</a></li>
+            <li><a href="matrix_from_vectors.html">Construct A Matrix From Vectors</a></li>
+            <li><a href="matrix_and_vector_formats.html">Matrix And Vector Formats</a></li>
+        </ul>
+    </div>
+    <a href="vector_projection.html" class="btn btn-default btn-lg">
+    Next <span class="glyphicon glyphicon-arrow-right"></span>
+    </a>
+</div>
+</div>
+
+</div>
+<div class="row" style="height: 500px">
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/three.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/helvetiker_regular.typeface.js"></script>
+<script src="js/isMobile.min.js"></script>
+
+<script src="js/VectorMatrixMathDemo.js"></script>
+<script src="js/VectorObject.js"></script>
+<script src="js/PointObject.js"></script>
+<script src="js/Axes2D.js"></script>
+<script src="js/Grid2D.js"></script>
+<script src="js/Label.js"></script>
+<script src="js/AxesLabels.js"></script>
+<script src="js/AngleBetweenDemo.js"></script>
+<script type="text/javascript"
+src="/Teaching/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+
+    $(function() {
+        new AngleBetweenDemo();
+    })
+
+</script>
+
+
+</body>
+</html>

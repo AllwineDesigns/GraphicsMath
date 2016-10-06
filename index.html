@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Introduction To Graphics Math</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<style>
+.box {
+    float: left;
+    padding: 5px;
+    padding-top: 100px;
+    margin-top: 10px;
+    height: 230px;
+}
+
+.border {
+    float: left;
+    border: 1px solid black;
+    padding: 5px;
+    height: 230px;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="row">
+<h1>Introduction to Graphics Math</h1>
+
+<p>
+The fundamental mathematical structures used in graphics programming are the vector and the matrix.
+In this introduction, we'll go over fundamental vector and matrix operations and how they apply to graphics programming.
+The goal here is to provide a visual and interactive means of understanding these concepts. Each topic
+will have a demo that you can interact with, which allows you to see how the underlying math controls the visual elements
+in the demo. Each topic also attempts to build off the previous, so there is a natural progression from simple 2D vectors 
+to full fledged 3D matrix transformations.
+</p>
+
+<h3>Simplified Graphics Pipeline</h3>
+<p>
+This graphics pipeline roughly represents how things are 
+rendered to your computer screen. Geometry is made up of a set of vectors, 
+which is then moved around in space and then rendered with some kind of shading 
+on your screen. The math that we'll be going over will touch on all three of 
+these topics, though the focus will be on transformations. 
+</p>
+<p>
+<div class="border">
+<strong>Geometry</strong>
+<ul>
+    <li>Fonts</li>
+    <li>3D models</li>
+    <li>Shape primitives</li>
+    <li>Curves</li>
+</ul>
+<strong>What we'll talk about</strong>
+<ul>
+    <li>Points</li>
+    <li>Direction vectors</li>
+    <li>Normals</li>
+</ul>
+</div>
+<div class="box">
+<span class="glyphicon glyphicon-arrow-right"></span>
+</div>
+<div class="border">
+<strong>Transformations</strong>
+<ul>
+    <li>Scale</li>
+    <li>Rotate</li>
+    <li>Translate</li>
+    <li>Project to 2D</li>
+</ul>
+<strong>What we'll talk about</strong>
+<ul>
+    <li>What a matrix is</li>
+    <li>How to use one to <br/>scale, rotate and <br/>translate geometry</li>
+</ul>
+</div>
+<div class="box">
+<span class="glyphicon glyphicon-arrow-right"></span>
+</div>
+<div class="border">
+<strong>Shading</strong>
+<ul>
+    <li>Solid colors</li>
+    <li>Texture mapping</li>
+    <li>Lighting calculations</li>
+</ul>
+<strong>What we'll talk about</strong>
+<ul>
+    <li>Dot product which is <br/>often used in shading <br/>calculations</li>
+</ul>
+</div>
+
+</p>
+</div>
+<br/>
+
+<div class="row">
+<a href="#" class="btn btn-default btn-lg disabled">
+<span class="glyphicon glyphicon-arrow-left"></span> Previous
+</a>
+<div class="btn-group">
+<button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown">
+    Jump To <span class="caret"></span>
+</button>
+<ul class="dropdown-menu" role="menu">
+    <li><a href="index.html">Introduction</a></li>
+    <li><a href="vector_point.html">Points and Directions</a></li>
+    <li><a href="vector_addition.html">Vector Addition</a></li>
+    <li><a href="magnitude.html">Magnitude</a></li>
+    <li><a href="normalization.html">Normalization</a></li>
+    <li><a href="dot_product.html">Dot Product</a></li>
+    <li><a href="angle_between.html">Angle Between Two Vectors</a></li>
+    <li><a href="vector_projection.html">Vector Projection</a></li>
+    <li><a href="matrices.html">Matrices</a></li>
+    <li><a href="scale_matrix.html">Scale Matrix</a></li>
+    <li><a href="rotation_matrix.html">Rotation Matrix</a></li>
+    <li><a href="translation_matrix.html">Translation Matrix</a></li>
+    <li><a href="matrix_multiplication.html">Matrix Multiplication</a></li>
+    <li><a href="cross_product.html">Cross Product</a></li>
+    <li><a href="euler_angles.html">Euler Angles</a></li>
+    <li><a href="matrix_from_vectors.html">Construct A Matrix From Vectors</a></li>
+    <li><a href="matrix_and_vector_formats.html">Matrix And Vector Formats</a></li>
+</ul>
+</div>
+
+<a href="vector_point.html" class="btn btn-default btn-lg">
+Next <span class="glyphicon glyphicon-arrow-right"></span>
+</a>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

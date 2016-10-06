@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Matrix Multiplication</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="container">
+<h1>Introduction to Graphics Math</h1>
+
+<h3>Matrix Multiplication</h3>
+
+<div class="row" id="matrixMultiplicationDemo">
+<div class="col-sm-6">
+<div class="scrollWidget">
+<canvas width="300" height="300"></canvas><br/>
+<button class="flipOrder">Flip Multiplication Order</button>
+</div>
+</div>
+<div class="col-sm-6">
+<p>
+
+<strong>Rotation:</strong> <span class="theta">0.000</span>\(^{\circ}\)<br/>
+<strong>Scale:</strong> (<span class="S">1.0, 1.0</span>)<br/>
+
+</p>
+
+<p>
+We've seen how a vector can be transformed by multiplying it by a matrix. 
+You can also transform a whole matrix by another by multiplying them. 
+Each vector in the matrix is transformed, just like a single vector would be. 
+Just like when transforming vectors, the left operand is being transformed by 
+the one on the right. In this example, we have have rotation matrix and
+scale matrix being multiplied together. You can flip the order they are 
+multiplied in to see the effect it has on the transformed coordinate system.
+
+<span class="eq1">\[ \textbf{S}=\begin{bmatrix}1.0 & 0.0 & 0.0 \\ 0.0 & 1.0 & 0.0 \\ 0.0 & 0.0 & 1.0\end{bmatrix}
+=\begin{bmatrix}\textbf{S}_\textbf{x} \\ \textbf{S}_\textbf{y} \\ \textbf{S}_\textbf{T}\end{bmatrix} 
+   \]</span>
+<span class="eq2">
+\[ \textbf{R}=\begin{bmatrix}1.000 & 0.000 & 0.0 \\ 0.000 & 1.000 & 0.0 \\ 0.0 & 0.0 & 1.0\end{bmatrix}
+=\begin{bmatrix}\textbf{R}_\textbf{x} \\ \textbf{R}_\textbf{y} \\ \textbf{R}_\textbf{T}\end{bmatrix} 
+   \]</span>
+
+<span class="eq3">
+\[\textbf{S} \textbf{R} =\begin{bmatrix}\textbf{S}_\textbf{x} \\ \textbf{S}_\textbf{y} \\ \textbf{S}_\textbf{T}\end{bmatrix} 
+   \begin{bmatrix}\textbf{R}_\textbf{x} \\ \textbf{R}_\textbf{y} \\ \textbf{R}_\textbf{T}\end{bmatrix} 
+   =
+   \begin{bmatrix}\textbf{S}_\textbf{x}\textbf{R} \\ \textbf{S}_\textbf{y}\textbf{R} \\ \textbf{S}_\textbf{T}\textbf{R}\end{bmatrix} 
+   \]
+</span>
+<span class="eq4">
+\[ =\underline{\underline{ \begin{bmatrix} 1.000 & 0.000 & 0.0 \\ 0.000 & 1.000 & 0.0 \\ 0.0 & 0.0 & 1.0 \end{bmatrix}}} \]
+</span>
+
+</p>
+
+<p>
+<strong>Note:</strong> Throughout this document we've been using row vectors to
+represent our matrices and vectors. Elsewhere, column vectors are often used which 
+changes the order of multiplication around. If column vectors were being used
+the right operand is being transformed by the one on the left. Read more about
+row and column vectors <a href="matrix_and_vector_formats.html">here</a>. 
+For a more advanced demo that combines translation, rotation and scale and
+can be combined in any order go <a href="matrix_multiplication_order.html">here</a>.
+</p>
+
+<p>
+</p>
+
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+    <a href="translation_matrix.html" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-arrow-left"></span> Previous
+    </a>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown">
+            Jump To <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html">Introduction</a></li>
+            <li><a href="vector_point.html">Points and Directions</a></li>
+            <li><a href="vector_addition.html">Vector Addition</a></li>
+            <li><a href="magnitude.html">Magnitude</a></li>
+            <li><a href="normalization.html">Normalization</a></li>
+            <li><a href="dot_product.html">Dot Product</a></li>
+            <li><a href="angle_between.html">Angle Between Two Vectors</a></li>
+            <li><a href="vector_projection.html">Vector Projection</a></li>
+            <li><a href="matrices.html">Matrices</a></li>
+            <li><a href="scale_matrix.html">Scale Matrix</a></li>
+            <li><a href="rotation_matrix.html">Rotation Matrix</a></li>
+            <li><a href="translation_matrix.html">Translation Matrix</a></li>
+            <li><a href="matrix_multiplication.html">Matrix Multiplication</a></li>
+            <li><a href="cross_product.html">Cross Product</a></li>
+            <li><a href="euler_angles.html">Euler Angles</a></li>
+            <li><a href="matrix_from_vectors.html">Construct A Matrix From Vectors</a></li>
+            <li><a href="matrix_and_vector_formats.html">Matrix And Vector Formats</a></li>
+        </ul>
+    </div>
+    <a href="cross_product.html" class="btn btn-default btn-lg">
+    Next <span class="glyphicon glyphicon-arrow-right"></span>
+    </a>
+</div>
+</div>
+
+</div>
+<div class="row" style="height: 500px">
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/three.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/helvetiker_regular.typeface.js"></script>
+<script src="js/isMobile.min.js"></script>
+
+<script src="js/VectorMatrixMathDemo.js"></script>
+<script src="js/VectorObject.js"></script>
+<script src="js/PointObject.js"></script>
+<script src="js/Axes2D.js"></script>
+<script src="js/Grid2D.js"></script>
+<script src="js/Label.js"></script>
+<script src="js/AxesLabels.js"></script>
+<script src="js/MatrixMultiplicationDemo.js"></script>
+<script type="text/javascript"
+src="/Teaching/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+
+    $(function() {
+        new MatrixMultiplicationDemo();
+    })
+
+</script>
+
+
+</body>
+</html>

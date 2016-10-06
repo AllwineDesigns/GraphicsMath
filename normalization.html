@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Normalization</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="container">
+<h1>Introduction to Graphics Math</h1>
+
+<h3>Normalization</h3>
+<div class="row" id="normalizationDemo">
+<div class="col-sm-6">
+<canvas width="300" height="300"></canvas>
+</div>
+<div class="col-sm-6">
+<p>
+<strong>A:</strong> (<span class="A"></span>)<br/>
+<strong>B:</strong> <span class="B"></span>
+</p>
+<p>
+A vector is normalized when its length is 1. It is also referred to as a unit vector. 
+Any vector with a length greater than zero can be normalized. A vector can be normalized
+by dividing each component by its magnitude. In this case B is a normalized version of A. In mathematics,
+a normalized vector is often represented with a hat symbol (^) over the variable.
+
+\[\textbf{B}=\hat{\textbf{A}}=\frac{\textbf{A}}{\|\textbf{A}\|}\]
+<span class="eq1">\[=\frac{(1.0,1.0)}{1.414}\]</span>
+<span class="eq2">\[=\left(\frac{1.0}{1.414},\frac{1.0}{1.414}\right)\]</span>
+<span class="eq3">\[=\underline{\underline{(0.707,0.707)}}\]</span>
+</p>
+
+<p>
+<strong>Things to try:</strong>
+<ul>
+<li>Drag A to (0,0). Notice how B is undefined. Zero vectors can't be normalized because dividing by zero is undefined. 
+Implementations of normalize will sometimes just return (0,0) in that case, but don't assume so! Always be aware if a vector
+you want to normalize could be a zero vector.</li>
+<li>Drag A so its length is greater than 1. Notice how B is shortened to 1.</li>
+<li>Drag A so its length is less than 1. Notice how B is lengthened to 1.</li>
+</ul>
+</p>
+
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+    <a href="magnitude.html" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-arrow-left"></span> Previous
+    </a>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown">
+            Jump To <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html">Introduction</a></li>
+            <li><a href="vector_point.html">Points and Directions</a></li>
+            <li><a href="vector_addition.html">Vector Addition</a></li>
+            <li><a href="magnitude.html">Magnitude</a></li>
+            <li><a href="normalization.html">Normalization</a></li>
+            <li><a href="dot_product.html">Dot Product</a></li>
+            <li><a href="angle_between.html">Angle Between Two Vectors</a></li>
+            <li><a href="vector_projection.html">Vector Projection</a></li>
+            <li><a href="matrices.html">Matrices</a></li>
+            <li><a href="scale_matrix.html">Scale Matrix</a></li>
+            <li><a href="rotation_matrix.html">Rotation Matrix</a></li>
+            <li><a href="translation_matrix.html">Translation Matrix</a></li>
+            <li><a href="matrix_multiplication.html">Matrix Multiplication</a></li>
+            <li><a href="cross_product.html">Cross Product</a></li>
+            <li><a href="euler_angles.html">Euler Angles</a></li>
+            <li><a href="matrix_from_vectors.html">Construct A Matrix From Vectors</a></li>
+            <li><a href="matrix_and_vector_formats.html">Matrix And Vector Formats</a></li>
+        </ul>
+    </div>
+    <a href="dot_product.html" class="btn btn-default btn-lg">
+    Next <span class="glyphicon glyphicon-arrow-right"></span>
+    </a>
+</div>
+</div>
+
+</div>
+<div class="row" style="height: 500px">
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/three.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/helvetiker_regular.typeface.js"></script>
+<script src="js/isMobile.min.js"></script>
+
+<script src="js/VectorMatrixMathDemo.js"></script>
+<script src="js/VectorObject.js"></script>
+<script src="js/PointObject.js"></script>
+<script src="js/Axes2D.js"></script>
+<script src="js/Grid2D.js"></script>
+<script src="js/Label.js"></script>
+<script src="js/AxesLabels.js"></script>
+<script src="js/NormalizationDemo.js"></script>
+<script type="text/javascript"
+src="/Teaching/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+
+    $(function() {
+        new NormalizationDemo();
+    })
+
+</script>
+
+
+</body>
+</html>

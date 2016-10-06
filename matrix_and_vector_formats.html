@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Matrix And Vector Formats</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="container">
+<h1>Introduction to Graphics Math</h1>
+
+<h3>Matrix And Vector Formats</h3>
+<div class="row">
+<div class="col-md-12">
+<p>
+It's important to note that throughout this document, I've been representing 
+matrices and vectors using row vectors. Some people prefer to represent them as 
+column vectors, which changes the order of multiplication. Here's the difference:
+<br/><br/>
+
+Row vectors (used throughout this document):
+\[(A_x, A_y, A_z, 1) \cdot \begin{bmatrix}x_x & x_y & x_z & 0 \\ y_x & y_y & y_z & 0 \\ z_x & z_y & z_z & 0 \\ T_x & T_y & T_z & 1\end{bmatrix} =(A_x x_x + A_y y_x + A_z z_x + T_x,\ \ \ A_x x_y + A_y y_y + A_z z_y + T_y,\ \ \ A_x x_z + A_y y_z + A_z z_z + T_z,\ \ \ 1)\]
+
+Column vectors (commonly used elsewhere):
+\[\begin{bmatrix}x_x & y_x & z_x & T_x\\ x_y & y_y & z_y & T_y \\ x_z & y_z & z_z & T_z\\ 0 & 0 & 0 & 1\end{bmatrix} \cdot \begin{bmatrix} A_x \\ A_y \\ A_z \\ 1\end{bmatrix}=\begin{bmatrix}A_x x_x + A_y y_x + A_z z_x + T_x \\  A_x x_y + A_y y_y + A_z z_y + T_y \\ A_x x_z + A_y y_z + A_z z_z + T_z \\ 1\end{bmatrix}\]
+
+Notice how A is now represented vertically, as well as that each column of the matrix is a vector. 
+Also, the order the matrices are placed in is flipped when multiplying. Applications such as Maya and 
+Houdini as well as DirectX, use row vectors. OpenGL uses column vectors as well as Unity3D and you'll 
+frequently see matrices and vectors written out in column vectors in mathematical 
+documents as well as on Wikipedia. <br/><br/>
+
+Row vectors vs column vectors can get especially confusing when you take into account how matrices 
+are implemented. Matrix implementations generally store a matrix as a single array of numbers.
+The layout of the array will be either row major or column major. Here's an example of both:
+</p>
+<p>
+memory layout = ( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 )<br/><br/>
+Row-major:<br/>
+\[M = \begin{bmatrix}0 & 1 & 2 & 3 \\ 4 & 5 & 6 & 7\\ 8 & 9 & 10 & 11 \\ 12 & 13 & 14 & 15\end{bmatrix}\]
+Column-major:<br/>
+\[M = \begin{bmatrix}0 & 4 & 8 & 12\\ 1 & 5 & 9 & 13 \\ 2 & 6 & 10 & 14 \\ 3 & 7 & 11 & 15\end{bmatrix}\]
+
+It can be confusing because row major and column major don't imply what format
+the actual matrix is in (though, generally when when people say row major they
+also imply row vectors, and column major implies column vectors). I ran into this 
+confusion while implementing these demos. The demos are
+implemented with three.js which uses WebGL (the OpenGL implementation for browsers) 
+as its rendering engine.  In the three.js documention for the
+<a href="http://threejs.org/docs/#Reference/Math/Matrix4" target="_blank">Matrix4 constructor</a>
+it says the matrix is initialized "with the supplied row-major values". 
+My first attempt to populate my matrix was as follows:<br/>
+</p>
+</div>
+<div class="col-md-4"></div>
+<div class="col-md-4">
+<pre>
+new THREE.Matrix4(xx, xy, xz, 0,
+                  yx, yy, yz, 0,
+                  zx, zy, zz, 0,
+                  Tx, Ty, Tz, 1);
+</pre>
+</div>
+<div class="col-md-4"></div>
+<div class="col-md-12">
+<p>
+
+This would make sense if the matrix was in row vector format:
+\[\begin{bmatrix}x_x & x_y & x_z & 0 \\ y_x & y_y & y_z & 0 \\ z_x & z_y & z_z & 0 \\ T_x & T_y & T_z & 1\end{bmatrix}\]
+
+But what slipped my mind was that OpenGL represents their matrices as column vectors, so the matrix
+was actually transposed. The correct way to input my matrix into three.js is as follows (which is
+actually column-major order for the way I'm representing my matrices):<br/>
+</p>
+</div>
+<div class="col-md-4"></div>
+<div class="col-md-4">
+<pre>
+new THREE.Matrix4(xx, yx, zx, Tx,
+                  xy, yy, zy, Ty,
+                  xz, yz, zz, Tz,
+                   0,  0,  0,  1);
+</pre>
+</div>
+<div class="col-md-4"></div>
+<div class="col-md-12">
+<p>
+
+Which is the correct row-major format when the matrix is in column vector form:
+\[\begin{bmatrix}x_x & y_x & z_x & T_x \\ x_y & y_y & z_y & T_y \\ x_z & y_z & z_z & T_z \\ 0 & 0 & 0 & 1\end{bmatrix}\]
+
+When inputting your matrices manually, be aware of the difference between column-major and row-major 
+input as well as column vectors and row vectors. Many texts and implementations 
+assume you know which one they are using, so you often have to figure it out 
+yourself. 
+
+For more information take a look at these links:
+<ul>
+<li><a href="http://stackoverflow.com/questions/17717600/confusion-between-c-and-opengl-matrix-order-row-major-vs-column-major">Confusion between C++ and OpenGL matrix order (row-major vs column-major)</a>
+<li><a href="http://duckmaestro.com/2013/08/17/matrices-are-not-transforms/">Matrices Are Not Transforms</a>
+<li><a href="http://www.scratchapixel.com/lessons/3d-basic-lessons/lesson-4-geometry/conventions-again-row-major-vs-column-major-vector/">Row Major vs Column Major Vector</li>
+</ul>
+</p>
+
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+    <a href="matrix_from_vectors.html" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-arrow-left"></span> Previous
+    </a>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown">
+            Jump To <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html">Introduction</a></li>
+            <li><a href="vector_point.html">Points and Directions</a></li>
+            <li><a href="vector_addition.html">Vector Addition</a></li>
+            <li><a href="magnitude.html">Magnitude</a></li>
+            <li><a href="normalization.html">Normalization</a></li>
+            <li><a href="dot_product.html">Dot Product</a></li>
+            <li><a href="angle_between.html">Angle Between Two Vectors</a></li>
+            <li><a href="vector_projection.html">Vector Projection</a></li>
+            <li><a href="matrices.html">Matrices</a></li>
+            <li><a href="scale_matrix.html">Scale Matrix</a></li>
+            <li><a href="rotation_matrix.html">Rotation Matrix</a></li>
+            <li><a href="translation_matrix.html">Translation Matrix</a></li>
+            <li><a href="matrix_multiplication.html">Matrix Multiplication</a></li>
+            <li><a href="cross_product.html">Cross Product</a></li>
+            <li><a href="euler_angles.html">Euler Angles</a></li>
+            <li><a href="matrix_from_vectors.html">Construct A Matrix From Vectors</a></li>
+            <li><a href="matrix_and_vector_formats.html">Matrix And Vector Formats</a></li>
+        </ul>
+    </div>
+    <a href="#" class="btn btn-default btn-lg disabled">
+    Next <span class="glyphicon glyphicon-arrow-right"></span>
+    </a>
+</div>
+</div>
+
+</div>
+<div class="row" style="height: 500px">
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/three.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/helvetiker_regular.typeface.js"></script>
+<script src="js/isMobile.min.js"></script>
+
+<script type="text/javascript"
+src="/Teaching/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>

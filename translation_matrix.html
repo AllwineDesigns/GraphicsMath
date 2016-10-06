@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Translation Matrix</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="container">
+<h1>Introduction to Graphics Math</h1>
+
+<h3>Translation Matrix</h3>
+
+<div class="row" id="translationMatrixDemo">
+<div class="col-sm-6">
+<canvas width="300" height="300"></canvas>
+</div>
+<div class="col-sm-6">
+<p>
+<strong>A:</strong> (<span class="A"></span>, 1.0)<br/>
+<strong>B:</strong> (<span class="B"></span>, 0.0)<br/>
+<strong>C:</strong> (<span class="C"></span>, 1.0)<br/>
+<strong>D:</strong> (<span class="D"></span>, 0.0)<br/><br/>
+<strong>x:</strong> (<span class="x">1.0,0.0</span>, 0.0)<br/>
+<strong>y:</strong> (<span class="y">0.0,1.0</span>, 0.0)<br/><br/>
+<strong>T:</strong> (<span class="T">0.0,0.0</span>, 1.0)
+</p>
+
+<p>
+So far we haven't differentiated between a point and a direction. When it comes
+to translating them in space, we have to make a distinction. Points can be moved
+around in space and their coordinates change, whereas a direction can be anywhere 
+in space and will still be pointed in the same direction and still have the same
+values. In this example, <strong>B</strong> is displayed relative to <strong>A</strong>.
+At the origin, you'll see <strong>B</strong> is also displayed in gray. They're
+both the same vector. Once we start translating vectors, we want to make sure
+that directions aren't changed, but points are.
+
+To do that we need to add an extra element to our vectors. The added element is
+a weight that we'll indicate with the subscript w:
+
+\[\textbf{A}=(A_x, A_y, A_w)\]
+\[\textbf{B}=(B_x, B_y, B_w)\]
+
+\[\textbf{x}=(x_x, x_y, x_w)\]
+\[\textbf{y}=(y_x, y_y, y_w)\]
+
+The added weight is a divisor for each of the other components. Our vectors
+now represent homogeneous coordinates, rather than conventional coordinates.
+To convert from homogeneous coordinates to conventional coordinates, divide
+the weight into each of the other components and drop the weight:
+
+\[(A_x, A_y, A_w) = (\frac{A_x}{A_w}, \frac{A_y}{A_w})\]
+
+The weight has applications such as
+in curve representations, but we won't get into that here. For more information
+search for homogeneous coordinates. For our purposes, 
+the weight will be either 1 or 0. When set to 0, the homogeneous coordinate 
+represents a point at infinity, which represents a direction. When set to 1, 
+the homogeneous coordinate represents a point in space. In this example, 
+<strong>A</strong> is a point, <strong>B</strong> is a direction, 
+<strong>x</strong> is a direction and <strong>y</strong> is a direction:
+
+\[\textbf{A}=(A_x,A_y,1)\]
+\[\textbf{B}=(B_x,B_y,0)\]
+\[\textbf{x}=(x_x,x_y,0)\]
+\[\textbf{y}=(y_x,y_y,0)\]
+
+In order to perform translations, we'll need another vector <strong>T</strong>
+which will be a point in space:
+
+\[\textbf{T}=(T_x,T_y,1)\]
+
+And now we have enough information to put it all into a translation matrix:
+
+\[\begin{bmatrix}\textbf{x} \\ \textbf{y} \\ \textbf{T}\end{bmatrix}=\begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ T_x & T_y & 1\end{bmatrix}\]
+
+We'll use it to transform <strong>A</strong> to <strong>C</strong> and 
+<strong>B</strong> to <strong>D</strong>:
+
+\[\textbf{C}=\textbf{A} \cdot \begin{bmatrix}\textbf{x} \\ \textbf{y} \\ \textbf{T}\end{bmatrix}=A_x \textbf{x} + A_y \textbf{y} + A_w \textbf{T}\]
+<span class="eq1">\[=-3.0 \cdot (1.0, 0.0, 0.0) + 1.0 \cdot (0.0, 1.0, 0.0) + 1.0 \cdot (0.0,0.0,1.0)\]</span>
+<span class="eq2">\[=\underline{\underline{(-3.0, 1.0, 1.0)}}\]</span>
+
+\[\textbf{D}=\textbf{B} \cdot \begin{bmatrix}\textbf{x} \\ \textbf{y} \\ \textbf{T}\end{bmatrix}=B_x \textbf{x} + B_y \textbf{y} + B_w \textbf{T}\]
+<span class="eq3">\[=1.0 \cdot (1.0, 0.0, 0.0) + 1.0 \cdot (0.0, 1.0, 0.0) + 0.0 \cdot (0.0,0.0,1.0)\]</span>
+<span class="eq4">\[=\underline{\underline{(1.0, 1.0,0.0)}}\]</span>
+
+</p>
+
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+    <a href="rotation_matrix.html" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-arrow-left"></span> Previous
+    </a>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown">
+            Jump To <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html">Introduction</a></li>
+            <li><a href="vector_point.html">Points and Directions</a></li>
+            <li><a href="vector_addition.html">Vector Addition</a></li>
+            <li><a href="magnitude.html">Magnitude</a></li>
+            <li><a href="normalization.html">Normalization</a></li>
+            <li><a href="dot_product.html">Dot Product</a></li>
+            <li><a href="angle_between.html">Angle Between Two Vectors</a></li>
+            <li><a href="vector_projection.html">Vector Projection</a></li>
+            <li><a href="matrices.html">Matrices</a></li>
+            <li><a href="scale_matrix.html">Scale Matrix</a></li>
+            <li><a href="rotation_matrix.html">Rotation Matrix</a></li>
+            <li><a href="translation_matrix.html">Translation Matrix</a></li>
+            <li><a href="matrix_multiplication.html">Matrix Multiplication</a></li>
+            <li><a href="cross_product.html">Cross Product</a></li>
+            <li><a href="euler_angles.html">Euler Angles</a></li>
+            <li><a href="matrix_from_vectors.html">Construct A Matrix From Vectors</a></li>
+            <li><a href="matrix_and_vector_formats.html">Matrix And Vector Formats</a></li>
+        </ul>
+    </div>
+    <a href="matrix_multiplication.html" class="btn btn-default btn-lg">
+    Next <span class="glyphicon glyphicon-arrow-right"></span>
+    </a>
+</div>
+</div>
+
+</div>
+<div class="row" style="height: 500px">
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/three.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/helvetiker_regular.typeface.js"></script>
+<script src="js/isMobile.min.js"></script>
+
+<script src="js/VectorMatrixMathDemo.js"></script>
+<script src="js/VectorObject.js"></script>
+<script src="js/PointObject.js"></script>
+<script src="js/Axes2D.js"></script>
+<script src="js/Grid2D.js"></script>
+<script src="js/Label.js"></script>
+<script src="js/AxesLabels.js"></script>
+<script src="js/TranslationMatrixDemo.js"></script>
+<script type="text/javascript"
+src="/Teaching/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+
+    $(function() {
+        new TranslationMatrixDemo();
+    })
+
+</script>
+
+
+</body>
+</html>
