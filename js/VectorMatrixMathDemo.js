@@ -25,7 +25,7 @@ var VectorMatrixMathDemo = {
                               scale: 150
                     }
                 });
-            } else if(width > 992) {
+            } else if(width > 900) {
                 this.renderer.setSize( 400, 400);
                 MathJax.Hub.Config({
                       "HTML-CSS": {
